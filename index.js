@@ -1,18 +1,13 @@
-// index.js
 const express = require('express');
 const bodyParser = require('body-parser');
-const petsRoutes = require('./pets');
+const petsRouter = require('./pets'); // Verifique o caminho para pets.js
 
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-// Configuração do body-parser para JSON
 app.use(bodyParser.json());
+app.use('/api', petsRouter); // Para acessar as rotas de pets
 
-// Rotas de pets
-app.use('/api/pets', petsRoutes);
-
-// Iniciando o servidor
-app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
